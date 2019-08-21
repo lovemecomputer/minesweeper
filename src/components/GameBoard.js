@@ -23,7 +23,7 @@ class GameBoard extends React.Component {
       let row = []
       //Inner loop to create cell in row (x position)
       for (let j = 0; j < this.state.sizeX; j++) {
-        row.push({ cell: { y: i, x: j, mine: false, cleared: false } })
+        row.push({ cell: { y: i, x: j, hasMine: false, isCleared: false } })
       }
       cells.push(row)
     }
@@ -46,17 +46,25 @@ class GameBoard extends React.Component {
   }
 
   render() {
-    console.log(this.state)
     const renderedCells = this.state.cells.map((item, indexY) => {
       return (
-        <div key={indexY}>
+        <div className="cell-row" key={indexY}>
           {this.state.cells[indexY].map((item, indexX) => {
-            return <Cell key={indexX} />
+            const currentCell = this.state.cells[(indexY, indexX)]
+            return (
+              <Cell
+                key={indexY.toString() + ',' + indexX.toString()}
+                y={currentCell.y}
+                x={currentCell.x}
+                mine={currentCell.hasMine}
+                cleared={currentCell.isCleared}
+              />
+            )
           })}
         </div>
       )
     })
-    // NOTE: to respond to Kat's question, this is where i'd rather be rendering the board!
+
     return <div className="game-board">{renderedCells}</div>
   }
 }
