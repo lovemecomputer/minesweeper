@@ -5,6 +5,7 @@ class Cell extends React.Component {
     return (
       <div className="cell" onClick={this.handleClickCell}>
         &nbsp; (y:{this.props.y}, x:{this.props.x}
+        {/* NOTE: rendering mine glyph based on this.props.mine (boolean) */}
       </div>
     )
   }

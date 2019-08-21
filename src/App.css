@@ -6,9 +6,6 @@
   margin: 40px;
 }
 
-.game-board {
-}
-
 .cell {
   display: inline-block;
   width: 30px;
@@ -30,4 +27,8 @@
 .cell:active {
   background: #414141;
   color: #fff;
+}
+
+.cell.cleared {
+  background: #fff;
 }

@@ -7,8 +7,7 @@ class GameBoard extends React.Component {
     this.state = {
       sizeX: 10,
       sizeY: 10,
-      cells: [[]],
-      renderedBoard: [[]]
+      cells: undefined
     }
   }
 
@@ -31,6 +30,12 @@ class GameBoard extends React.Component {
     return cells
   }
 
+  generateMines = () => {
+    // NOTE: separate logic for mines here!
+    // 2D vector of randomInt coords to place mine,
+    // re-do mine placement if one is already assigned
+  }
+
   renderBoard = () => {
     console.log('renderBoard()')
     console.log(this.state.cells)
@@ -51,16 +56,22 @@ class GameBoard extends React.Component {
     }
 
     console.log(renderedCells)
-    this.setState({ renderedBoard: renderedCells })
+    return renderedCells
   }
 
   componentDidMount() {
     this.initializeGame()
   }
 
+  handleCellClick(e, { x, y }) {
+    // NOTE: idea is to receive coordinates for cell,
+    // then look those coordinates up in this.state.cells for safety
+  }
+
   render() {
     console.log(this.state)
-    return <div className="game-board">{}</div>
+    // NOTE: to respond to Kat's question, this is where i'd rather be rendering the board!
+    return <div className="game-board">{this.renderBoard()}</div>
   }
 }
 
