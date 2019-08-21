@@ -2,15 +2,11 @@
   box-sizing: border-box;
 }
 
-
 .app-wrapper {
   margin: 40px;
 }
 
 .game-board {
-  border: 1px solid #eee;
-  
-
 }
 
 .cell {
@@ -21,6 +17,10 @@
   outline: 1px solid #dedede;
   text-align: center;
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-size: 10px;
 }
 
 .cell:hover {
@@ -29,4 +29,5 @@
 
 .cell:active {
   background: #414141;
+  color: #fff;
 }

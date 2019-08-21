@@ -1,17 +1,13 @@
-import React from 'react';
+import React from 'react'
 
 class Cell extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {mine: false};
-  }
-
   render() {
     return (
-      <div className="cell">c</div>
-    );
+      <div className="cell" onClick={this.handleClickCell}>
+        &nbsp; (y:{this.props.y}, x:{this.props.x}
+      </div>
+    )
   }
-  
-};
+}
 
-export default Cell;
+export default Cell
