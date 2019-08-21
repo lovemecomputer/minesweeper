@@ -7,7 +7,7 @@ class GameBoard extends React.Component {
     this.state = {
       sizeX: 10,
       sizeY: 10,
-      cells: undefined
+      cells: []
     }
   }
 
@@ -36,29 +36,6 @@ class GameBoard extends React.Component {
     // re-do mine placement if one is already assigned
   }
 
-  renderBoard = () => {
-    console.log('renderBoard()')
-    console.log(this.state.cells)
-
-    let renderedCells = []
-
-    // row (y position)
-    for (let i = 0; i < this.state.cells.length; i++) {
-      console.log(i)
-      let children = []
-      // cell (x position)
-      for (let j = 0; j < this.state.cells[j].length; j++) {
-        console.log(i)
-        children.push(<Cell y={i} x={j} key={`${i},${j}`} />)
-      }
-      //Create the row wrapper and add the children to it
-      renderedCells.push(<div key={`row-${i}`}>{children}</div>)
-    }
-
-    console.log(renderedCells)
-    return renderedCells
-  }
-
   componentDidMount() {
     this.initializeGame()
   }
@@ -70,8 +47,17 @@ class GameBoard extends React.Component {
 
   render() {
     console.log(this.state)
+    const renderedCells = this.state.cells.map((item, indexY) => {
+      return (
+        <div key={indexY}>
+          {this.state.cells[indexY].map((item, indexX) => {
+            return <Cell key={indexX} />
+          })}
+        </div>
+      )
+    })
     // NOTE: to respond to Kat's question, this is where i'd rather be rendering the board!
-    return <div className="game-board">{this.renderBoard()}</div>
+    return <div className="game-board">{renderedCells}</div>
   }
 }
 
