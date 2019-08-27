@@ -9,6 +9,7 @@ class GameBoard extends React.Component {
       sizeY: 10,
       cells: []
     }
+    this.handleCellClick = this.handleCellClick.bind(this)
   }
 
   initializeGame = () => {
@@ -40,9 +41,20 @@ class GameBoard extends React.Component {
     this.initializeGame()
   }
 
-  handleCellClick(e, { x, y }) {
-    // NOTE: idea is to receive coordinates for cell,
-    // then look those coordinates up in this.state.cells for safety
+  checkCell(cells, y, x) {}
+
+  clearCell(cells, y, x) {}
+
+  // NOTE: idea is to receive coordinates for cell,
+  // then look those coordinates up in this.state.cells for adjustment
+  handleCellClick(event, coordinates) {
+    let currentCells = this.state.cells
+    if (currentCells[coordinates.y][coordinates.x].isCleared === true) {
+      //preview any neighbors
+      return
+    }
+    currentCells[coordinates.y][coordinates.x].isCleared = true
+    this.setState({ cells: currentCells })
   }
 
   render() {
@@ -50,14 +62,15 @@ class GameBoard extends React.Component {
       return (
         <div className="cell-row" key={indexY}>
           {this.state.cells[indexY].map((item, indexX) => {
-            const currentCell = this.state.cells[(indexY, indexX)]
+            const currentCell = this.state.cells[indexY][indexX]
             return (
               <Cell
                 key={indexY.toString() + ',' + indexX.toString()}
-                y={currentCell.y}
-                x={currentCell.x}
-                mine={currentCell.hasMine}
-                cleared={currentCell.isCleared}
+                hasMine={currentCell.hasMine}
+                isCleared={currentCell.isCleared}
+                y={indexY}
+                x={indexX}
+                onClick={this.handleCellClick}
               />
             )
           })}

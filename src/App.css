@@ -6,8 +6,15 @@
   margin: 40px;
 }
 
+.game-board {
+}
+
+.cell-row {
+  display: flex;
+}
+
 .cell {
-  display: inline-block;
+  display: block;
   width: 40px;
   height: 40px;
   background: #eee;
@@ -16,20 +23,28 @@
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
-  user-select: none;
-  font-size: 10px;
-  line-height: 10px;
+  /* user-select: none; */
+  transition: 0.35s ease all;
+  font-size: 8px;
 }
 
 .cell:hover {
   background: #e3e3e3;
+  transition: 0.1s ease all;
 }
 
 .cell:active {
   background: #414141;
   color: #fff;
+  transition: 0 ease all;
 }
 
-.cell.cleared {
+/* "preview" state when seeing what is near to clicked number */
+.cell.preview {
+}
+
+.cell.isCleared {
   background: #fff;
+  transition: 0.35s easeInSine all;
+  cursor: default;
 }
