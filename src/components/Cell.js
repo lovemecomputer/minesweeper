@@ -1,21 +1,33 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export default function Cell(props) {
-  const appliedClassNames = classNames('cell', props.className, {
-    isCleared: props.isCleared,
-    hasMine: props.hasMine
+export default function Cell({
+  onClick,
+  className,
+  y,
+  x,
+  hasMine,
+  isCleared,
+  neighbors
+}) {
+  const appliedClassNames = classNames('cell', className, {
+    isCleared: isCleared,
+    hasMine: hasMine
   })
+  // console.log(props)
 
   return (
     <div
       className={appliedClassNames}
       onClick={event => {
-        props.onClick(event, { y: props.y, x: props.x })
+        onClick(event, { y: y, x: x })
       }}
     >
-      {/* {`${props.y},${props.x}`} */}
-      {/* NOTE: rendering mine glyph based on this.props.mine (boolean) */}
+      <div className="neighborCount">
+        {isCleared ? (hasMine ? `💣` : neighbors ? `${neighbors}` : '') : ''}
+      </div>
+      {/* {`${y},${x}`} */}
+      {/* NOTE: rendering mine glyph based on this.mine (boolean) */}
     </div>
   )
 }

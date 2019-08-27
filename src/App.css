@@ -14,7 +14,9 @@
 }
 
 .cell {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 40px;
   height: 40px;
   background: #eee;
@@ -25,7 +27,7 @@
   -moz-user-select: none;
   /* user-select: none; */
   transition: 0.35s ease all;
-  font-size: 8px;
+  font-size: 22px;
 }
 
 .cell:hover {
@@ -45,10 +47,23 @@
 
 .cell.isCleared {
   background: #fff;
-  transition: 0.35s easeInSine all;
+  transition: 0.35s ease-out all;
   cursor: default;
+}
+.cell.isCleared:active {
+  color: inherit;
+}
+
+.cell .contents {
+  display: none;
+  width: 100;
+  height: 100;
+}
+
+.cell.isCleared .contents {
+  display: block;
 }
 
 .cell.isCleared.hasMine {
-  background: red;
+  background: pink;
 }
