@@ -7,13 +7,17 @@ class GameBoard extends React.Component {
     this.state = {
       sizeX: 10,
       sizeY: 10,
+      numberOfMines: 15,
       cells: []
     }
     this.handleCellClick = this.handleCellClick.bind(this)
+    this.generateMines = this.generateMines.bind(this)
   }
 
   initializeGame = () => {
-    this.setState({ cells: this.createCells() })
+    let initialCells = this.createCells()
+    initialCells = this.generateMines(initialCells)
+    this.setState({ cells: initialCells })
   }
 
   createCells = () => {
@@ -31,10 +35,20 @@ class GameBoard extends React.Component {
     return cells
   }
 
-  generateMines = () => {
+  generateMines = cells => {
     // NOTE: separate logic for mines here!
     // 2D vector of randomInt coords to place mine,
     // re-do mine placement if one is already assigned
+
+    for (let i = 0; i < this.state.numberOfMines; i++) {
+      cells[Math.floor(Math.random() * this.state.sizeY)][
+        Math.floor(Math.random() * this.state.sizeX)
+      ].hasMine = true
+    }
+
+    console.log(cells)
+
+    return cells
   }
 
   componentDidMount() {

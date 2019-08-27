@@ -48,3 +48,7 @@
   transition: 0.35s easeInSine all;
   cursor: default;
 }
+
+.cell.isCleared.hasMine {
+  background: red;
+}
